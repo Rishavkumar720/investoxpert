@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Properties - InvestoXpert</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .property-banner {
+      background-image: url('https://www.investoxpert.com/wp-content/uploads/2019/12/addela-group.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 2rem;
+    }
+    .property-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .property-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      transition: box-shadow 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .property-card:hover {
+      box-shadow: 0 8px 30px rgb(0 0 0 / 0.2);
+    }
+    .property-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .property-details {
+      padding: 1rem 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .property-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #dc1450;
+      text-decoration: none;
+    }
+    .property-location {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.75rem;
+      flex-grow: 1;
+    }
+    .property-price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0b5ed7;
+      margin-bottom: 0.75rem;
+    }
+    .property-bhk {
+      font-size: 0.95rem;
+      background: #dc1450;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 5px;
+      align-self: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .btn-view-details {
+      background-color: #dc1450;
+      border: none;
+      color: white;
+      padding: 0.45rem 1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: auto;
+    }
+    .btn-view-details:hover {
+      background-color: #b31242;
+      color: white;
+      text-decoration: none;
+    }
+    .no-properties {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #dc1450;
+      margin-top: 3rem;
+    }
+    .debug-info {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="property-banner">
+    Addela Group Properties
+  </div>
+
+  <div class="property-container">
+    {% if properties %}
+    <div class="property-grid">
+      {% for p in properties %}
+      <div class="property-card">
+        <img src="{{ p.image }}" alt="{{ p.title }}" class="property-image" />
+        <div class="property-details">
+          <a href="{% url 'property_detail' p.id %}" class="property-title">{{ p.title }}</a>
+          <div class="property-location">{{ p.locality.name }}, {{ p.city.name }}, {{ p.state.name }}</div>
+          <div class="property-price">₹ {{ p.price_min }} to {{ p.price_max }}</div>
+          <div class="property-bhk">{{ p.bhk }}</div>
+          <a href="{% url 'property_detail' p.id %}" class="btn-view-details">View Details</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-properties">No Properties Found</div>
+    {% endif %}
+
+    {% if debug_info %}
+    <div class="debug-info">
+      <p>Filters Applied:</p>
+      <ul>
+        <li>State ID: {{ debug_info.state_id }}</li>
+        <li>City ID: {{ debug_info.city_id }}</li>
+        <li>Locality ID: {{ debug_info.locality_id }}</li>
+        <li>BHK: {{ debug_info.bhk }}</li>
+        <li>Matched Properties Count: {{ debug_info.matched_count }}</li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+</body>
+
+</html>

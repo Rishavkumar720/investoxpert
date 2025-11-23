@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ p.title }} - InvestoXpert</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+
+<style>
+  body { background-color:#f5f5f5; font-family:"Segoe UI", Tahoma; }
+  .breadcrumb-item + .breadcrumb-item::before { content: ">"; }
+  .star-rating { color:#ffc107; font-size:1.25rem; }
+  .price-text { font-size:1.5rem; font-weight:700; color:#0b5ed7; }
+  .btn-instant-call { background:#dc1450; border:none; color:white; padding:10px 18px; font-weight:600; }
+  .btn-instant-call:hover { background:#b31242; }
+  .card-project-highlights { background:white; padding:20px; border-radius:6px; margin-top:30px; }
+  .tab-menu { background:black; }
+  .nav-link { color:white!important; text-transform:uppercase; font-weight:500; }
+  .nav-link.active { background:#dc1450!important; }
+  .section-container { background:white; padding:20px; margin-top:20px; border-radius:6px; }
+  .contact-sidebar { background:white; padding:20px; border-radius:6px; position:sticky; top:20px; }
+  @media(max-width:991px){ .contact-sidebar{ position:static; margin-top:20px; } }
+</style>
+
+</head>
+<body>
+
+<div class="container my-3">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb bg-transparent p-0 mb-2">
+      <li class="breadcrumb-item"><a href="#">Property in {{ p.state.name }}</a></li>
+      <li class="breadcrumb-item"><a href="#">Property in {{ p.city.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ p.title }}</li>
+    </ol>
+  </nav>
+
+  <!-- Main content -->
+  <div class="row g-4">
+    <div class="col-lg-8">
+
+      <h1 class="fw-bold">
+        {{ p.title }}
+        <span style="color:#dc1450; font-size:1.5rem; cursor:pointer;">&#9825;</span>
+        <span style="color:#dc1450; font-size:1.5rem; cursor:pointer;">&#128257;</span>
+      </h1>
+
+      <div class="d-flex align-items-center mb-3">
+        <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <strong class="ms-3">5.0 Rating</strong>
+      </div>
+
+      <!-- Dynamic location -->
+      <div class="mb-3">
+        <i class="bi bi-geo-alt"></i>
+        <span class="ms-2">{{ p.locality.name }}, {{ p.city.name }}</span>
+      </div>
+
+      <!-- Dynamic Price -->
+      <div class="price-text mb-3">₹ {{ p.price_min }} to {{ p.price_max }}</div>
+
+      <button class="btn btn-instant-call mb-4">
+        <i class="bi bi-telephone-fill me-2"></i> Instant Call Back
+      </button>
+
+      <!-- Map prominently displayed -->
+      <div class="card-project-highlights bg-light p-3 rounded-4 shadow-sm mb-4" style="height: 360px;">
+  <h3 class="mb-3">Location Map</h3>
+
+  <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm">
+    <iframe 
+    
+   src="{{ effective_map_url }}"
+      style="border:0; width: 100%; height: 70%;" 
+      allowfullscreen 
+      loading="lazy">
+    </iframe>
+  </div>
+</div>
+
+      <!-- Highlights with tabs -->
+      <div class="card-project-highlights mt-4">
+        <h3 class="mb-3">Project Highlights</h3>
+
+        <ul class="nav nav-tabs tab-menu" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="configuration-tab" data-bs-toggle="tab" data-bs-target="#configuration" type="button" role="tab" aria-controls="configuration" aria-selected="false">Configuration</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="amenities-tab" data-bs-toggle="tab" data-bs-target="#amenities" type="button" role="tab" aria-controls="amenities" aria-selected="false">Amenities</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="developer-tab" data-bs-toggle="tab" data-bs-target="#developer" type="button" role="tab" aria-controls="developer" aria-selected="false">Developer</button>
+          </li>
+        </ul>
+
+        <div class="tab-content pt-3" tabindex="0">
+          <!-- ABOUT -->
+          <div id="about" class="tab-pane fade show active" role="tabpanel" aria-labelledby="about-tab">
+            <h5>About</h5>
+            <p>{{ p.about|safe }}</p>
+          </div>
+
+          <!-- CONFIGURATION -->
+          <div id="configuration" class="tab-pane fade" role="tabpanel" aria-labelledby="configuration-tab">
+            <h5>Configuration</h5>
+            <p>{{ p.configuration|linebreaks }}</p>
+          </div>
+
+          <!-- AMENITIES -->
+          <div id="amenities" class="tab-pane fade" role="tabpanel" aria-labelledby="amenities-tab">
+            <h5>Amenities</h5>
+            <ul>
+              {% for item in amenities_list %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- DEVELOPER -->
+          <div id="developer" class="tab-pane fade" role="tabpanel" aria-labelledby="developer-tab">
+            <h5>Developer</h5>
+            <p>{{ p.developer }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Contact -->
+    <div class="col-lg-4">
+      <div class="contact-sidebar shadow">
+        <h5>Let's Get Your Dream Home</h5>
+        <form>
+          <input type="text" class="form-control" placeholder="Name" required />
+          <div class="d-flex gap-2">
+            <select class="form-select" style="max-width:100px;">
+              <option>+91</option>
+            </select>
+            <input type="tel" class="form-control" placeholder="Phone" required />
+          </div>
+          <input type="email" class="form-control" placeholder="Email" required />
+          <textarea class="form-control" rows="3" placeholder="Message (optional)"></textarea>
+          <p class="authorization-text">
+            I authorize InvestoXpert to contact me via Call, SMS, WhatsApp, or Email.
+          </p>
+         <button class="btn btn-danger px-4 py-2 text-uppercase fw-semibold" type="button">
+  <i class="bi bi-telephone-fill me-2"></i> Send Request
+</button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

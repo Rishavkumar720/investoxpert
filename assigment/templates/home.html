@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvestoXpert - Clean Responsive Design with Floating Contact Icons</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* ===========================
+      General & Reset Styles
+    ============================ */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      color: #222;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a,
+    button {
+      user-select: none;
+    }
+
+    /* ===========================
+      Navbar Styles
+    ============================ */
+    .navbar-dark {
+      background-color: #222;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.5);
+      padding: 0.5rem 1rem;
+      user-select: none;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar-brand img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .select-city {
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    /* ===========================
+      Hero Section
+    ============================ */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 500px;
+      background: url('https://www.investoxpert.com/images/home-landing-bg.jpeg')
+        center center / cover no-repeat;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.65);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-weight: 700;
+      font-size: 2.7rem;
+      line-height: 1.2;
+      user-select: text;
+    }
+
+    .hero-title .highlight {
+      color: #d81b60;
+    }
+
+    /* Buy/Rent Toggle Buttons */
+    .btn-toggle-group {
+      margin-top: 2rem;
+      border-radius: 8px;
+      overflow: hidden;
+      display: inline-flex;
+      box-shadow: 0 0 15px rgb(216 27 96 / 0.4);
+      user-select: none;
+    }
+
+    .btn-toggle-group .btn {
+      padding: 0.625rem 2rem;
+      font-weight: 700;
+      border-radius: 0;
+      border: none;
+      min-width: 140px;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #222;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-toggle-group .btn.active {
+      background-color: #d81b60;
+      box-shadow: inset 0 0 10px rgb(0 0 0 / 0.4);
+    }
+
+    /* Sorting Dropdown Section */
+    .sorting-section {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 0.75rem;
+      user-select: none;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sorting-section select {
+      height: 44px;
+      border-radius: 0.35rem;
+      min-width: 200px;
+      max-width: 250px;
+      font-size: 1rem;
+      padding: 0 0.75rem;
+      user-select: auto;
+    }
+
+    .btn-search {
+      background-color: #d81b60;
+      color: white;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.35rem;
+      min-width: 120px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .btn-search:hover {
+      background-color: #b81852;
+    }
+
+    /* ===========================
+      Testimonial Section
+    ============================ */
+    .testimonial-section {
+      background-color: #f5f4f0;
+      padding: 4rem 1rem 5rem;
+      text-align: center;
+      user-select: none;
+    }
+
+    .testimonial-title {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #222;
+    }
+
+    .testimonial-underline {
+      width: 90px;
+      height: 3px;
+      background-color: #d81b4c;
+      margin: 0 auto 3rem;
+      border-radius: 2px;
+    }
+
+    .testimonial-video-wrapper {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgb(216 27 76 / 0.25);
+      background: #fff;
+    }
+
+    .testimonial-video-wrapper iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    /* Nav Arrows for testimonial */
+    .testimonial-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #004e87;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .testimonial-nav-btn:hover {
+      background-color: #d81b4c;
+    }
+
+    .testimonial-nav-btn.left {
+      left: 10px;
+    }
+
+    .testimonial-nav-btn.right {
+      right: 10px;
+    }
+
+    /* ===========================
+      Blog Cards Section
+    ============================ */
+    .blog-section {
+      background-color: #fff;
+      padding: 4rem 1rem 5rem;
+      text-align: center;
+      user-select: none;
+    }
+
+    .blog-cards-container {
+      display: flex;
+      gap: 1.8rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      user-select: auto;
+    }
+
+    .blog-cards-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .blog-card {
+      flex: 0 0 320px;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgb(0 0 0 / 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      transition: box-shadow 0.3s ease;
+      max-height: 470px;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 8px 30px rgb(216 27 76 / 0.3);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .blog-content {
+      padding: 1.3rem 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      color: #222;
+    }
+
+    .blog-date {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+      user-select: text;
+    }
+
+    .blog-title {
+      font-weight: 700;
+      color: #d81b4c;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      user-select: text;
+    }
+
+    .blog-author {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.7rem;
+      user-select: text;
+    }
+
+    .blog-author span {
+      font-weight: 400;
+      color: #222;
+      user-select: text;
+    }
+
+    .blog-excerpt {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.45;
+      margin-bottom: 1.5rem;
+      user-select: text;
+      flex-grow: 1;
+    }
+
+    .blog-readmore-btn {
+      background-color: #111;
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 0.55rem 1.6rem;
+      border-radius: 8px 8px 12px 12px;
+      cursor: pointer;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      width: 100%;
+      text-align: center;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      font-size: 0.92rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .blog-readmore-btn:hover {
+      background-color: #d81b4c;
+    }
+
+    /* Blog nav buttons container */
+    .blog-nav {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      user-select: none;
+    }
+
+    .blog-nav-btn {
+      border: none;
+      padding: 0.6rem 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 1rem;
+      color: white;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      min-width: 48px;
+      height: 48px;
+    }
+
+    .blog-nav-btn.arrow {
+      background-color: #d81b4c;
+      border-radius: 50%;
+      font-size: 1.35rem;
+      line-height: 1;
+      padding: 0;
+      user-select: none;
+    }
+
+    .blog-nav-btn.arrow:hover {
+      background-color: #b0163b;
+    }
+
+    .blog-nav-btn.view-all {
+      background-color: #111;
+      border-radius: 8px;
+      padding: 0 1.4rem;
+      min-width: auto;
+    }
+
+    .blog-nav-btn.view-all:hover {
+      background-color: #444;
+    }
+
+    /* ===========================
+      Footer Section
+    ============================ */
+    .footer-section {
+      background-color: #004e87;
+      color: white;
+      padding: 3rem 2rem 4rem;
+      font-size: 0.85rem;
+      user-select: none;
+    }
+
+    .footer-section h4 {
+      font-weight: 700;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid #d81b4c;
+      max-width: max-content;
+      padding-bottom: 5px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      color: white;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-column h5 {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      border-bottom: 2.5px solid #d81b4c;
+      display: inline-block;
+      padding-bottom: 3px;
+      font-size: 1.05rem;
+      user-select: none;
+    }
+
+    .footer-column a {
+      color: #e0e0e0;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      user-select: text;
+    }
+
+    .footer-column a:hover {
+      color: #d81b4c;
+      text-decoration: underline;
+    }
+
+    /* ===========================
+      Floating Contact Icons
+    ============================ */
+    .floating-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 9999;
+    }
+
+    .contact-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .contact-icon:hover {
+      background-color: #d81b60;
+    }
+
+    /* WhatsApp Icon Color */
+    .contact-icon.whatsapp:hover svg path {
+      fill: white;
+    }
+
+    /* Phone Icon Color */
+    .contact-icon.phone:hover svg path {
+      stroke: white;
+      fill: white;
+    }
+
+    /* SVG icon sizes */
+    .contact-icon svg {
+      width: 26px;
+      height: 26px;
+      user-select: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .hero-section {
+        height: auto;
+        padding: 4rem 1rem 3rem;
+      }
+
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .btn-toggle-group {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-toggle-group .btn {
+        min-width: 120px;
+        padding: 0.55rem 1.3rem;
+        font-size: 0.9rem;
+      }
+
+      .sorting-section {
+        justify-content: center;
+        gap: 0.75rem 0.5rem;
+      }
+
+      .sorting-section select {
+        min-width: 150px;
+        max-width: 100%;
+      }
+
+      .btn-search {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .testimonial-video-wrapper iframe {
+        height: 200px;
+      }
+
+      .blog-cards-container {
+        flex-direction: column;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        gap: 1.5rem;
+        overflow-x: hidden;
+      }
+
+      .blog-card {
+        flex: 1 1 auto;
+        max-width: 100%;
+        max-height: none;
+      }
+
+      .blog-nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .footer-links {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem 1.2rem;
+      }
+
+      .footer-column h5 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.investoxpert.com/_next/image?url=%2FIX-white-logo.png&w=384&q=75" alt="InvestoXpert Logo" />
+        INVESTO XPERT
+      </a>
+
+      <div class="dropdown">
+        <a class="select-city dropdown-toggle" href="#" role="button" id="selectCityDropdown" data-bs-toggle="dropdown"
+          aria-expanded="false">Select City</a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="selectCityDropdown">
+          <li><a class="dropdown-item" href="#">Noida</a></li>
+          <li><a class="dropdown-item" href="#">Gurugram</a></li>
+          <li><a class="dropdown-item" href="#">Delhi</a></li>
+          <li><a class="dropdown-item" href="#">Mumbai</a></li>
+          <li><a class="dropdown-item" href="#">Bangalore</a></li>
+          <li><a class="dropdown-item" href="#">Pune</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" role="region" aria-label="Property Search Hero section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title" tabindex="0">
+        Discover your dream property <br />in <span class="highlight">INDIA</span>
+      </h1>
+
+      <!-- Buy / Rent Toggle Buttons -->
+      <div class="btn-toggle-group" role="group" aria-label="Buy or Rent Property toggle">
+        <button type="button" class="btn active" id="buyBtn" aria-pressed="true">BUY PROPERTY</button>
+        <button type="button" class="btn" id="rentBtn" aria-pressed="false">RENT PROPERTY</button>
+      </div>
+
+      <!-- Sorting Dropdowns -->
+      <form class="sorting-section" id="propertyForm" method="GET" action="/search/" aria-label="Property search form">
+        <select id="stateSelect" name="state" class="form-select" required>
+  <option disabled selected>Select State</option>
+  {% for s in states %}
+    <option value="{{ s.id }}">{{ s.name }}</option>
+  {% endfor %}
+</select>
+
+<select class="form-select" id="citySelect" name="city" required disabled>
+  <option disabled selected>Select City</option>
+</select>
+
+<select class="form-select" id="localitySelect" name="locality" required disabled>
+  <option disabled selected>Select Locality</option>
+</select>
+
+<select class="form-select" id="bhkSelect" name="bhk" required>
+  <option disabled selected>Select BHK</option>
+  <option value="1 BHK">1 BHK</option>
+  <option value="2 BHK">2 BHK</option>
+  <option value="3 BHK">3 BHK</option>
+</select>
+
+<button type="submit" class="btn btn-search">
+  🔍 Search
+</button>
+
+      </form>
+    </div>
+  </section>
+  <!-- d1: Popular Cities Section -->
+<section class="py-5 bg-light" aria-label="Popular Cities">
+  <div class="container text-center">
+    <h6 class="text-uppercase mb-2" style="letter-spacing: 2px;">Discover Your Property In</h6>
+    <h2 class="fw-bold mb-3">Popular Cities</h2>
+    <hr style="width: 70px; border-top: 3px solid #d81b60; margin: 0 auto 40px auto;" />
+    <div class="row g-4 justify-content-center">
+      <!-- City Card -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://images.pexels.com/photos/2887207/pexels-photo-2887207.jpeg" alt="Noida" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">NOIDA</h3>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://www.westend61.de/images/0001354170pw/airial-view-gurugram-india.jpg" alt="Gurugram" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">GURUGRAM</h3>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://www.westend61.de/images/0001354170pw/airial-view-gurugram-india.jpg" alt="Delhi" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">DELHI</h3>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://images.pexels.com/photos/2887207/pexels-photo-2887207.jpeg" alt="Mumbai" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">MUMBAI</h3>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://images.pexels.com/photos/2887207/pexels-photo-2887207.jpeg" alt="Bangalore" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">BANGALORE</h3>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="position-relative rounded-3 overflow-hidden" style="cursor:pointer;">
+          <img src="https://www.westend61.de/images/0001354170pw/airial-view-gurugram-india.jpg" alt="Pune" class="img-fluid" style="filter: brightness(0.45);" />
+          <h3 class="position-absolute top-50 start-50 translate-middle text-white fw-bold fs-4 user-select-none">PUNE</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- d2: Trending Projects Section -->
+<section class="py-5 bg-light" aria-label="Trending Projects">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-3">Trending Projects</h2>
+    <hr style="width: 70px; border-top: 3px solid #d81b60; margin: 0 auto 40px auto;" />
+    <div class="row g-4 justify-content-center">
+      <!-- Project Card 1 -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="card shadow-sm rounded-3 w-100">
+          <img src="https://www.investoxpert.com/_next/image?url=%2Fimages%2Fcities%2Fgurgaon.jpeg&w=1920&q=75" alt="Godrej Park Greens Mamurdi" class="card-img-top" />
+          <div class="card-body d-flex flex-column text-start">
+            <span class="text-danger fw-bold small text-uppercase mb-2">For Sale</span>
+            <h5 class="card-title fw-bold mb-1">Godrej Park Greens Mamurdi</h5>
+            <div class="mb-2 text-warning small" aria-label="5 star rating" role="img">
+              ★★★★★ <span class="text-dark small ms-2 fw-semibold">5.0 Rating</span>
+            </div>
+            <p class="mb-1 fw-semibold text-danger">Price ₹56 Lakh to 60 Lakh</p>
+            <div class="d-flex flex-wrap mb-1 small text-muted gap-3">
+              <div><i class="bi bi-geo-alt-fill text-danger"></i> Mamurdi</div>
+              <div><i class="bi bi-tag-fill text-danger"></i> Apartment</div>
+            </div>
+            <div class="d-flex flex-wrap mb-2 small text-muted gap-3">
+              <div><i class="bi bi-grid-fill text-danger"></i> 488 - 601 Sq.Ft.</div>
+              <div><i class="bi bi-house-door-fill text-danger"></i> 2, 3 BHK</div>
+            </div>
+            <p class="mb-3 small">Near Possession</p>
+            <button class="btn btn-danger fw-bold text-uppercase mt-auto">View Details 👁️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="card shadow-sm rounded-3 w-100">
+          <img src="https://www.investoxpert.com/_next/image?url=https%3A%2F%2Fdestinationcompress.s3.ap-south-1.amazonaws.com%2F1a777f63-d4ab-452f-8671-774179e7653a.jpg&w=1920&q=75" alt="Godrej Forest Grove Mamurdi" class="card-img-top" />
+          <div class="card-body d-flex flex-column text-start">
+            <span class="text-danger fw-bold small text-uppercase mb-2">For Sale</span>
+            <h5 class="card-title fw-bold mb-1">Godrej Forest Grove Mamurdi</h5>
+            <div class="mb-2 text-warning small" aria-label="5 star rating" role="img">
+              ★★★★★ <span class="text-dark small ms-2 fw-semibold">5.0 Rating</span>
+            </div>
+            <p class="mb-1 fw-semibold text-danger">Price ₹51 Lakh to 74 Lakh</p>
+            <div class="d-flex flex-wrap mb-1 small text-muted gap-3">
+              <div><i class="bi bi-geo-alt-fill text-danger"></i> Mamurdi</div>
+              <div><i class="bi bi-tag-fill text-danger"></i> Apartment</div>
+            </div>
+            <div class="d-flex flex-wrap mb-2 small text-muted gap-3">
+              <div><i class="bi bi-grid-fill text-danger"></i> 586 - 748 Sq.Ft.</div>
+              <div><i class="bi bi-house-door-fill text-danger"></i> 2, 3 BHK</div>
+            </div>
+            <p class="mb-3 small">Mid Stage</p>
+            <button class="btn btn-danger fw-bold text-uppercase mt-auto">View Details 👁️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="card shadow-sm rounded-3 w-100">
+          <img src="https://www.investoxpert.com/_next/image?url=https%3A%2F%2Fdestinationcompress.s3.ap-south-1.amazonaws.com%2F3fe61d4a-4d8d-4f72-84c9-0d29d5f5bd93.jpg&w=1920&q=75" alt="Godrej Exquisite Kavesar" class="card-img-top" />
+          <div class="card-body d-flex flex-column text-start">
+            <span class="text-danger fw-bold small text-uppercase mb-2">For Sale</span>
+            <h5 class="card-title fw-bold mb-1">Godrej Exquisite Kavesar</h5>
+            <div class="mb-2 text-warning small" aria-label="5 star rating" role="img">
+              ★★★★★ <span class="text-dark small ms-2 fw-semibold">5.0 Rating</span>
+            </div>
+            <p class="mb-1 fw-semibold text-danger">Price ₹1.71 Cr to 2.60 Cr</p>
+            <div class="d-flex flex-wrap mb-1 small text-muted gap-3">
+              <div><i class="bi bi-geo-alt-fill text-danger"></i> Kavesar</div>
+              <div><i class="bi bi-tag-fill text-danger"></i> Apartment</div>
+            </div>
+            <div class="d-flex flex-wrap mb-2 small text-muted gap-3">
+              <div><i class="bi bi-grid-fill text-danger"></i> 655 - 922 Sq.Ft.</div>
+              <div><i class="bi bi-house-door-fill text-danger"></i> 2, 3 BHK</div>
+            </div>
+            <p class="mb-3 small">Mid Stage</p>
+            <button class="btn btn-danger fw-bold text-uppercase mt-auto">View Details 👁️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- d3: How We Work Section -->
+<section class="py-5 bg-light" aria-label="How We Work">
+  <div class="container text-center">
+    <h6 class="text-uppercase mb-2" style="letter-spacing: 2px;">How We Work</h6>
+    <h2 class="fw-bold mb-4">End To End Assistance</h2>
+    <hr style="width: 70px; border-top: 3px solid #d81b60; margin: 0 auto 40px auto;" />
+    <div class="d-flex justify-content-between align-items-center flex-wrap" style="max-width: 900px; margin: auto;">
+      <!-- Step 1 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1 1 0 0 0-.217.12l-3.85 3.851a1 1 0 1 0 1.415 1.414l3.85-3.85a1 1 0 0 0 .12-.215v-.001zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Select Property</small>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-award"
+            viewBox="0 0 16 16">
+            <path
+              d="M9.669.864 8 0 6.331.864a1 1 0 0 0-.71.71L5 2.976 3.845 3.198a1 1 0 0 0-.554.554l-.222 1.155-1.402-.833a1 1 0 0 0-.707-.121l-1.5.5V5.5L1.5 6l-1.854 2.588.177.323V15H0l1-1.5 3-.5 2 .5 2-2 1-.5 1 1.5h1.469a.5.5 0 0 1 .469.33l.439 1.28a1 1 0 0 0 .49.642l1.035 1.548h2l1-3 1-.5v-3l-1-3z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Meet Our Expert</small>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-geo-alt"
+            viewBox="0 0 16 16">
+            <path d="M12.166 8.94c-.172 1.105-1.128 1.9-2.166 1.9-1.039 0-1.995-.795-2.167-1.9h4.333z" />
+            <path fill-rule="evenodd"
+              d="M8 15s6-5.686 6-9.5S10.42 1 8 1 2 5.314 2 9.5 8 15 8 15zm0-3.253a2.25 2.25 0 1 0 0-4.494 2.25 2.25 0 0 0 0 4.494z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Visit Property</small>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-house-door"
+            viewBox="0 0 16 16">
+            <path d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5H11v-3H5v3H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Buy Property</small>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cash-stack"
+            viewBox="0 0 16 16">
+            <path d="M14 4h-1V2h-1V1H5v1H4v2H3v9h11V4zM3 14h11v2H3v-2zm0-3h11v2H3v-2z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Loan Assistance</small>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="text-center flex-fill" style="min-width: 120px;">
+        <div class="mx-auto mb-3 position-relative rounded-circle border border-danger" style="width: 60px; height: 60px; color: #d81b60; font-size: 28px; display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-check"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10.854 5.146a.5.5 0 1 1 .292.707L7.707 9.293l2.707 2.707a.5.5 0 0 1-.708.708L7 10.707 4.854 12.854a.5.5 0 1 1-.708-.708l2.5-2.5a.5.5 0 0 1 .708 0z" />
+            <path
+              d="M8 10a3 3 0 1 0-2.995-2.824 2.639 2.639 0 0 0-2.005 1.516A1 1 0 0 0 2 10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2c0-1.237-1.01-2-2-2z" />
+          </svg>
+          <div style="position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 12px solid white; filter: drop-shadow(0 1px 1px #d81b60);"></div>
+        </div>
+        <small class="fw-semibold">Customer Support</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Testimonial Section -->
+  <section class="testimonial-section" role="region" aria-label="Customer Testimonials">
+    <h2 class="testimonial-title" tabindex="0">WHAT OUR CUSTOMERS SAY</h2>
+    <div class="testimonial-underline" aria-hidden="true"></div>
+    <div class="testimonial-video-wrapper">
+  <iframe 
+      src="https://www.youtube.com/embed/fhxW8SoOZfA"
+      title="Client Testimonial Video"
+      frameborder="0"
+      allowfullscreen>
+  </iframe>
+</div>
+
+
+      <button class="testimonial-nav-btn left" aria-label="Previous Video">&#8592;</button>
+      <button class="testimonial-nav-btn right" aria-label="Next Video">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- Blog Cards Section -->
+  <section class="blog-section" role="region" aria-label="Latest Blogs">
+    <div class="blog-cards-container" id="blogCards" tabindex="0" aria-live="polite" aria-atomic="true">
+      <!-- Blog Card 1 -->
+      <article class="blog-card" tabindex="0" role="article" aria-label="What is the circle rate in South Delhi 2024">
+        <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/8487d658-dd5d-4658-987f-37decf6f6c4b.jpeg" alt="Circle Rate South Delhi" loading="lazy" />
+        <div class="blog-content">
+          <time class="blog-date" datetime="2024-01-12">12 Jan 2024</time>
+          <h3 class="blog-title">What is the circle rate in South Delhi 2024?</h3>
+          <div class="blog-author">By <span>Investoxpert</span></div>
+          <p class="blog-excerpt">South Delhi is an affluent neighborhood in Delhi that is popular for both residential and...</p>
+          <button class="blog-readmore-btn" type="button"
+            aria-label="Read more about what is the circle rate in South Delhi 2024">READ MORE →</button>
+        </div>
+      </article>
+
+      <!-- Blog Card 2 -->
+      <article class="blog-card" tabindex="0" role="article" aria-label="What Is CTS Number Of A Property And Why Is It Important?">
+        <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/b01a6680-4665-4bd4-a5c5-12a3d33697b0.jpg" alt="CTS Number Property" loading="lazy" />
+        <div class="blog-content">
+          <time class="blog-date" datetime="2024-01-04">04 Jan 2024</time>
+          <h3 class="blog-title">What Is CTS Number Of A Property And Why Is It Important?</h3>
+          <div class="blog-author">By <span>Investoxpert</span></div>
+          <p class="blog-excerpt">Property owners, purchasers, and sellers in Mumbai are required to obtain a CTS...</p>
+          <button class="blog-readmore-btn" type="button" aria-label="Read more about CTS number of a property">READ
+            MORE →</button>
+        </div>
+      </article>
+
+      <!-- Blog Card 3 -->
+      <article class="blog-card" tabindex="0" role="article"
+        aria-label="Understanding the key difference between flats and apartments">
+        <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/b379925f-f98b-438b-ba4f-db112f228fd3.jpg" alt="Apartment vs Flat" loading="lazy" />
+        <div class="blog-content">
+          <time class="blog-date" datetime="2024-01-05">05 Jan 2024</time>
+          <h3 class="blog-title">Understanding the key difference between flats and apartments</h3>
+          <div class="blog-author">By <span>Investoxpert</span></div>
+          <p class="blog-excerpt">Although the terms "flat" and "apartment" are sometimes used synonymously, they have a...</p>
+          <button class="blog-readmore-btn" type="button"
+            aria-label="Read more about difference between flats and apartments">READ MORE →</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Blog Navigation Buttons -->
+    <div class="blog-nav" aria-label="Blog cards navigation">
+      <button class="blog-nav-btn arrow" id="blogPrev" aria-label="Scroll blog cards left">&#8592;</button>
+      <button class="blog-nav-btn arrow" id="blogNext" aria-label="Scroll blog cards right">&#8594;</button>
+      <button class="blog-nav-btn view-all" aria-label="View all blogs">VIEW ALL</button>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section" role="contentinfo">
+    <h4 tabindex="0">Most Popular Links</h4>
+    <div class="footer-links" role="list">
+      <div class="footer-column" role="listitem" aria-label="Real Estate In India">
+        <h5>Real Estate In India</h5>
+        <a href="#" tabindex="0">Real Estate In Noida</a>
+        <a href="#" tabindex="0">Real Estate In Pune</a>
+        <a href="#" tabindex="0">Real Estate In Gurugram</a>
+        <a href="#" tabindex="0">Real Estate In Ahmedabad</a>
+        <a href="#" tabindex="0">Real Estate In Mumbai</a>
+        <a href="#" tabindex="0">Real Estate In Thane</a>
+        <a href="#" tabindex="0">Real Estate In Bangalore</a>
+        <a href="#" tabindex="0">Real Estate In Chennai</a>
+        <a href="#" tabindex="0">Real Estate In Kolkata</a>
+        <a href="#" tabindex="0">Real Estate In Faridabad</a>
+        <a href="#" tabindex="0">Real Estate In Chandigarh</a>
+        <a href="#" tabindex="0">Real Estate In Ghaziabad</a>
+        <a href="#" tabindex="0">Real Estate In Delhi</a>
+        <a href="#" tabindex="0">Real Estate In Greater Noida</a>
+        <a href="#" tabindex="0">Real Estate In Mohali</a>
+      </div>
+
+      <div class="footer-column" role="listitem" aria-label="Real Estate Developers In India">
+        <h5>Real Estate Developers In India</h5>
+        <a href="#" tabindex="0">4S Developer</a>
+        <a href="#" tabindex="0">Aashina Housing</a>
+        <a href="#" tabindex="0">ABA Corp</a>
+        <a href="#" tabindex="0">ACE Group India</a>
+        <a href="#" tabindex="0">Adani Realty</a>
+        <a href="#" tabindex="0">Adani Realty Mumbai</a>
+        <a href="#" tabindex="0">Adarsh Developers</a>
+        <a href="#" tabindex="0">Addela Group</a>
+        <a href="#" tabindex="0">Aigin Group</a>
+        <a href="#" tabindex="0">Ajnara Developer</a>
+        <a href="#" tabindex="0">Amaatra Group</a>
+        <a href="#" tabindex="0">Ambesten Group</a>
+        <a href="#" tabindex="0">Ambience Group</a>
+        <a href="#" tabindex="0">Anthem Infrastructure</a>
+        <a href="#" tabindex="0">Apex Group</a>
+      </div>
+
+      <div class="footer-column" role="listitem" aria-label="Company Links">
+        <a href="#" tabindex="0">Godrej Properties</a>
+        <a href="#" tabindex="0">Godrej Properties Bangalore</a>
+        <a href="#" tabindex="0">Godrej Properties Pune</a>
+        <a href="#" tabindex="0">Goel Ganga Developments</a>
+        <a href="#" tabindex="0">Goel Ganga Group</a>
+        <a href="#" tabindex="0">Group 108</a>
+        <a href="#" tabindex="0">Gulshan Homz</a>
+        <a href="#" tabindex="0">GYGY Group</a>
+        <a href="#" tabindex="0">Habitech Infrastructure</a>
+        <a href="#" tabindex="0">Hawelia Group</a>
+        <a href="#" tabindex="0">Hero Realty</a>
+        <a href="#" tabindex="0">Himalaya Residency</a>
+        <a href="#" tabindex="0">Hiranandani Developers</a>
+        <a href="#" tabindex="0">Irish Infrastructure</a>
+        <a href="#" tabindex="0">JM Housing</a>
+      </div>
+
+      <div class="footer-column" role="listitem" aria-label="More Links">
+        <a href="#" tabindex="0">Provident Housing</a>
+        <a href="#" tabindex="0">Puravankara Developer</a>
+        <a href="#" tabindex="0">Puri Constructions</a>
+        <a href="#" tabindex="0">Purvanchal Projects</a>
+        <a href="#" tabindex="0">Rajhans Infratech</a>
+        <a href="#" tabindex="0">Ratan Group</a>
+        <a href="#" tabindex="0">Raymond Realty</a>
+        <a href="#" tabindex="0">Rohan Builders</a>
+        <a href="#" tabindex="0">Runwal Group</a>
+        <a href="#" tabindex="0">Rustomjee Group</a>
+        <a href="#" tabindex="0">Saartrhi Group</a>
+        <a href="#" tabindex="0">Sam Palm Olympia</a>
+        <a href="#" tabindex="0">Samridhi Group</a>
+        <a href="#" tabindex="0">Saviour Builders</a>
+        <a href="#" tabindex="0">Saya Homes</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Icons -->
+  <div class="floating-contact" aria-label="Contact options">
+    <!-- WhatsApp -->
+    <a href="https://wa.me/919955129572" target="_blank" rel="noopener noreferrer" class="contact-icon whatsapp" aria-label="Chat on WhatsApp">
+      <!-- WhatsApp SVG icon -->
+      <svg viewBox="0 0 32 32" fill="#25D366" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M16 3c-7 0-13 6-13 13a12.9 12.9 0 0 0 2 7L3 29l6.7-2a13 13 0 0 0 6.3 1.5c7 0 13-6 13-13S23 3 16 3z" />
+        <path fill="#fff" d="M21.9 17.3c-.3-.2-1.6-.8-1.9-.9-.3-.1-.5-.2-.7.2s-.8.9-1 1.1c-.2.3-.4.3-.7.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.7.1-.2.3-.4.4-.5.1-.1.2-.2.3-.3.1-.1.1-.2.2-.4 0-.1 0-.3 0-.5s-.7-1.7-1-.3c-.3 1.3-1 2-.8 2.4.2.5 1.8 2.8 4.3 3.9.6.3 1 .3 1.4.3.5 0 1.4-.6 1.6-1.1.1-.2.1-.4.1-.6 0-.3-.2-.5-.5-.7z" />
+      </svg>
+    </a>
+
+    <!-- Phone -->
+    <a href="tel:+919955129572" class="contact-icon phone" aria-label="Call phone number 9955129572">
+      <!-- Phone SVG icon -->
+      <svg fill="none" stroke="#004e87" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"
+        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.7 19.7 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.7 19.7 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.54 12.54 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.37 12.37 0 0 0 2.8.68A2 2 0 0 1 22 16.92z" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ============================================================
+     BUY / RENT BUTTON TOGGLE
+  ============================================================ */
+  const buyBtn = document.getElementById("buyBtn");
+  const rentBtn = document.getElementById("rentBtn");
+
+  buyBtn.addEventListener("click", () => {
+    buyBtn.classList.add("active");
+    rentBtn.classList.remove("active");
+    buyBtn.setAttribute("aria-pressed", "true");
+    rentBtn.setAttribute("aria-pressed", "false");
+  });
+
+  rentBtn.addEventListener("click", () => {
+    rentBtn.classList.add("active");
+    buyBtn.classList.remove("active");
+    rentBtn.setAttribute("aria-pressed", "true");
+    buyBtn.setAttribute("aria-pressed", "false");
+  });
+
+
+  /* ============================================================
+     CASCADING DROPDOWNS (STATE → CITY → LOCALITY)
+  ============================================================ */
+  const stateSelect = document.getElementById("stateSelect");
+  const citySelect = document.getElementById("citySelect");
+  const localitySelect = document.getElementById("localitySelect");
+
+  // STATE → CITIES
+  stateSelect.addEventListener("change", function () {
+    const stateId = this.value;
+
+    fetch(`/cities/${stateId}/`)
+      .then(res => res.json())
+      .then(data => {
+
+        // Reset dropdowns
+        citySelect.disabled = false;
+        localitySelect.disabled = true;
+
+        citySelect.innerHTML = `<option disabled selected>Select City</option>`;
+        localitySelect.innerHTML = `<option disabled selected>Select Locality</option>`;
+
+        // Append cities
+        data.cities.forEach(city => {
+          citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+        });
+      })
+      .catch(err => console.error("City fetch error:", err));
+  });
+
+  // CITY → LOCALITIES
+  citySelect.addEventListener("change", function () {
+    const cityId = this.value;
+
+    fetch(`/localities/${cityId}/`)
+      .then(res => res.json())
+      .then(data => {
+
+        localitySelect.disabled = false;
+        localitySelect.innerHTML = `<option disabled selected>Select Locality</option>`;
+
+        // Append localities
+        data.localities.forEach(loc => {
+          localitySelect.innerHTML += `<option value="${loc.id}">${loc.name}</option>`;
+        });
+      })
+      .catch(err => console.error("Locality fetch error:", err));
+  });
+
+
+  /* ============================================================
+     SEARCH FORM — NORMAL GET SUBMISSION
+  ============================================================ */
+  const form = document.getElementById("propertyForm");
+
+  form.addEventListener("submit", function () {
+    // Remove preventDefault — allow normal submission to /search/
+    console.log("Submitting search form...");
+  });
+
+
+  /* ============================================================
+     BLOG SLIDER
+  ============================================================ */
+  const container = document.getElementById('blogCards');
+  const btnPrev = document.getElementById('blogPrev');
+  const btnNext = document.getElementById('blogNext');
+
+  btnPrev.addEventListener('click', () => {
+    container.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+
+  btnNext.addEventListener('click', () => {
+    container.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+
+}); 
+</script>
+
+
+
+</body>
+
+</html>
